@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 def read_gct(GCT_file, summary = False):
@@ -19,7 +20,21 @@ def read_gct(GCT_file, summary = False):
 
 def log_normalize(df):
     """
-    Takes in a dataframe and log_normalizes the data
+    Takes in a dataframe and log normalizes the data
     """
 
-    
+    return df.applymap(log_cust)
+
+
+def log_cust(x):
+    """
+    Custom log function
+
+    x --> a positive value
+    """
+    if x < 0:
+        return 0
+    elif x == 0:
+        return 0
+    elif x > 0:
+        return np.log(x)
