@@ -1,6 +1,6 @@
 import pandas as pd
 
-from log_normalize_func.py import *
+from log_normalize_func import *
 import argparse
 import humanfriendly
 
@@ -13,8 +13,11 @@ parser.add_argument("-f", "--filename",
 
 parser.add_argument("-o", "--output_filename",
                     type=str,
-                    help="The basename to use for output file")
+                    help="The basename to use for output file",
+                    default = "out")
 
+
+args = parser.parse_args()
 
 
 print("~~~~~~~~~~~~~~~~~~~~~~")
@@ -23,18 +26,14 @@ print(args)
 print("Now getting work done.")
 print("~~~~~~~~~~~~~~~~~~~~~~")
 
-args = parser.parse_args()
+if args.filename != None:
 
-out_filename = args.output_filename
-if not out_filename.endswith('.txt'):
-    out_filename = out_filename + '.txt'
+    in_data = pd.read_csv(args.filename)
+    out_df = log_normalize(in_data)
+    out_name = args.output_filename + ".gct"
 
+    out_df.to_csv(out_name)
 
-
-in_data = pd.read_csv(args.filename)
-out_df = log_normalize(in_data)
-out_name = args.output_filename + ".gct"
-
-out_df.to_csv(out_name)
-
-print("Process completed. " + (out_name) + " is outputted. ")
+    print("Process completed. " + (out_name) + " is outputted. ")
+else:
+    print("Nothing is inputted!")
