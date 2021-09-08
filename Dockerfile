@@ -16,4 +16,5 @@ RUN mkdir /Log_Normalize \
 USER gpuser
 COPY src/*.py /Log_Normalize/
 
+
 RUN python /Log_Normalize/Log_Normalize.py
