@@ -28,7 +28,7 @@ print("~~~~~~~~~~~~~~~~~~~~~~")
 
 if args.filename != None:
 
-    in_data = pd.read_csv(args.filename)
+    in_data = read_gct(args.filename)
     out_df = log_normalize(in_data)
     out_name = args.output_filename + ".gct"
 
