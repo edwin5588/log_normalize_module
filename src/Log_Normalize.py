@@ -23,6 +23,7 @@ print(args)
 print("Now getting work done.")
 print("~~~~~~~~~~~~~~~~~~~~~~")
 
+args = parser.parse_args()
 
 out_filename = args.output_filename
 if not out_filename.endswith('.txt'):
@@ -32,9 +33,8 @@ if not out_filename.endswith('.txt'):
 
 in_data = pd.read_csv(args.filename)
 out_df = log_normalize(in_data)
+out_name = args.output_filename + ".gct"
 
-with open(out_filename, 'w') as g:
-    for line in f.readlines():
-        g.write(line)
-    g.write('\n')  # This could be an argument, wether or not to add a newline.
-    g.write(args.message)
+out_df.to_csv(out_name)
+
+print("Process completed. " + (out_name) + " is outputted. ")

@@ -12,7 +12,7 @@ def read_gct(GCT_file, summary = False):
     returns a Pandas dataframe
 
     """
-    data = pd.read_csv(GCT_file, delimiter = "\t")
+    data = pd.read_csv(GCT_file, skiprows = 2, delimiter = "\t")
     if summary = True:
         print("Data has: %d rows and %d columns")%(len(data), len(data.loc[0]))
     return data
