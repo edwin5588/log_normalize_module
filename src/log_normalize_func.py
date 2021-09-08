@@ -32,9 +32,10 @@ def log_cust(x):
 
     x --> a positive value
     """
-    if x < 0:
-        return 0
-    elif x == 0:
-        return 0
-    elif x > 0:
-        return np.log(x)
+    if type(x) != str:
+        if x < 0:
+            return 0
+        elif x == 0:
+            return 0
+        elif x > 0:
+            return np.log(x)
